@@ -53,7 +53,7 @@ export default function MovieItem(props) {
         </ExpandMore>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <MovieDetails movieDetail={movieDetail} />
+        {movieDetail ?? <MovieDetails movieDetail={movieDetail} />}
       </Collapse>
     </Card>
   );
