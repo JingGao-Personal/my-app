@@ -9,6 +9,7 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MovieDetails from "./MovieDetail";
+import { getMovieDetail } from "../api/GetApi";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -21,24 +22,25 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function MovieItem(movie) {
+export default function MovieItem(props) {
   const [expanded, setExpanded] = React.useState(false);
+  const [movieDetail, setMovieDetail] = React.useState(null);
 
-  const handleExpandClick = () => {
+  const handleExpandClick = async () => {
+    const result = await getMovieDetail(props.movie.imdbID);
+    setMovieDetail(result);
+    console.log(movieDetail)
     setExpanded(!expanded);
   };
 
   return (
-    <Card sx={{ maxWidth: 950 }}>
-      <CardHeader
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
-      />
+    <Card sx={{ maxWidth: 360 }}>
+      <CardHeader title={props.movie.Title} subheader={props.movie.Year} />
       <CardMedia
         component="img"
         height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
+        image={props.movie.Poster}
+        alt="movie poster"
       />
       <CardActions disableSpacing>
         <ExpandMore
@@ -51,7 +53,7 @@ export default function MovieItem(movie) {
         </ExpandMore>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <MovieDetails />
+        <MovieDetails movieDetail={movieDetail} />
       </Collapse>
     </Card>
   );

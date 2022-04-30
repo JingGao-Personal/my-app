@@ -3,19 +3,17 @@ import * as React from "react";
 import List from "@mui/material/List";
 import MovieItem from "./MovieItem";
 
-export default function MovieList(movieList) {
+export default function MovieList(props) {
   return (
-    <List sx={{ width: "100%", maxWidth: 950, bgcolor: "background.paper" }}>
-      {movieList.length > 0 ? (
-        movieList.map((movie) => <MovieItem movie={movie} />)
+    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+      {props.movieList.length > 0 ? (
+        props.movieList.map((movie) => <MovieItem movie={movie} />)
       ) : (
         <p>
           {" "}
-          Couldn&apos;t find any movie. Please search again using another search
-          criteria.
+          The movie list is empty, please search for them.
         </p>
       )}
-      <MovieItem />
     </List>
   );
 }
