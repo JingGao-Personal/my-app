@@ -22,6 +22,7 @@ export default function SearchForm(props) {
       <IconButton
         sx={{ p: "10px" }}
         aria-label="search"
+        data-testid="search-button"
         onClick={() => {
           props.search();
         }}

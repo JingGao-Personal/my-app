@@ -29,7 +29,7 @@ export default function MovieItem(props) {
   const handleExpandClick = async () => {
     const result = await getMovieDetail(props.movie.imdbID);
     setMovieDetail(result);
-    console.log(movieDetail)
+    setTimeout(10000)
     setExpanded(!expanded);
   };
 
@@ -53,7 +53,7 @@ export default function MovieItem(props) {
         </ExpandMore>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        {movieDetail ?? <MovieDetails movieDetail={movieDetail} />}
+        <MovieDetails movieDetail={movieDetail} />
       </Collapse>
     </Card>
   );

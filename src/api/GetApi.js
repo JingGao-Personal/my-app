@@ -14,6 +14,5 @@ export async function getMovies(title) {
   const results = await axios
     .get(`https://www.omdbapi.com/?apikey=c2de74cd&s=${title}`)
     .then((res) => res.data);
-
   return results.Search
 }
